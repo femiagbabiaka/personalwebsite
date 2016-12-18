@@ -1,6 +1,4 @@
-FROM dockerfile/java
-
-RUN sudo apt-get update
+FROM anapsix/alpine-java
 
 ADD target/personalwebsite-standalone.jar /srv/personalwebsite.jar
 
