@@ -9,4 +9,9 @@
                  [ring/ring-jetty-adapter "1.4.0"]
                  [compojure "1.4.0"]
                  [ring/ring-defaults "0.2.1"]
-                 [hiccup "1.0.5"]])
+                 [hiccup "1.0.5"]]
+  :main ^:skip-aot personalwebsite.web
+  :uberjar-name "personalwebsite-standalone.jar"
+  :plugins [[lein-ring "0.8.13"]]
+  :ring {:handler personalwebsite.web/application}
+  :profiles {:uberjar {:aot :all}})
