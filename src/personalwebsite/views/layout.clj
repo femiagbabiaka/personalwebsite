@@ -24,7 +24,7 @@
             [:p "hello, my name is femi agbabiaka"]
             [:p "i'm a software engineer who loves infrastructure, all things devops, and long walks on the beach"]
             [:p "currently, i work at " [:a {:href "http://activecampaign.com" :style "color:blue;"} "ActiveCampaign"] "."]
-            [:p "i'm also a member of the " [:a {:href "www.dsausa.org" :style "color: blue;"} "Democratic Socialists of America"] "."] 
+            [:p "i'm also a member of the " [:a {:href "http://dsausa.org" :style "color: blue;"} "Democratic Socialists of America"] "."] 
             [:p "if you're looking to contact me, you can email me at "
                 [:a {:href "mailto:femi@femiagbabiaka.xyz"} "femi@femiagbabiaka.xyz"] "."]
             [:ul
