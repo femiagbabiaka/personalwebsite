@@ -1,6 +1,8 @@
 FROM anapsix/alpine-java
 
-ADD target/personalwebsite-standalone.jar /srv/personalwebsite.jar
+RUN apk add --no-cache --update curl git && rm /var/cache/apk/*
+
+RUN curl -o /srv/personalwebsite.jar -L https://github.com/femiagbabiaka/personalwebsite/releases/download/0.1.0/personalwebsite-standalone.jar
 
 EXPOSE 8080
 
