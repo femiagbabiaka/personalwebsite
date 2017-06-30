@@ -3,7 +3,7 @@
             [ring.adapter.jetty :as ring]
             [personalwebsite.controllers.posts :as controller]
             [ring.middleware.defaults :refer [wrap-defaults site-defaults]])
-            (:gen-class))
+  (:gen-class))
 
 
 (defroutes routes 

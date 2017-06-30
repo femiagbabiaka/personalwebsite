@@ -2,8 +2,8 @@
     (:require [compojure.core :refer [defroutes GET]]
               [personalwebsite.views.layout :as layout]
               [ring.util.response :as ring]
-              [clojure.string :as str]
-))
+              [clojure.string :as str]))
+
 
 
 (defn index [] 
@@ -16,6 +16,5 @@
 ;;(ring/redirect view/postNotFound))
 
 (defroutes routes
-    (GET "/" [] (index))
+    (GET "/" [] (index)))
     ;;(GET "/blog/:slug" [slug] (singlePost slug))
-    )
