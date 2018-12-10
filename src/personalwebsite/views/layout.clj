@@ -1,5 +1,6 @@
 (ns personalwebsite.views.layout
-  (:require [hiccup.page :as h]))
+  (:require [hiccup.page :as h]
+            [markdown-to-hiccup.core :as m]))
 
 (defn header
   "The header component for our pages."
@@ -18,24 +19,36 @@
     [:ul {:style "list-style-type: none; margin: 0; padding: 0;"}
      [:li {:style "display: inline; padding: 14px 16px 14px 0px;" } [:a { :href "/" :style "color: blue;"} "home"]]
      [:li {:style "display: inline; padding: 14px 16px;" } [:a {:style "color: blue;" :href "/blog"} "blog"]]
-     [:li {:style "display: inline; padding: 14px 16px;" } [:a {:style "color: blue;" :href "https://github.com/femiagbabiaka"} "github"]]
-     [:li {:style "display: inline; padding: 14px 16px;" } [:a {:style "color: blue;" :href "https://www.linkedin.com/in/femi-agbabiaka-5b5984108"} "linkedin"]]]))
+     [:li {:style "display: inline; padding: 14px 16px;" } [:a {:style "color: blue;" :href "https://github.com/femiagbabiaka" :target "_blank"} "github"]]
+     [:li {:style "display: inline; padding: 14px 16px;" } [:a {:style "color: blue;" :href "https://www.linkedin.com/in/femi-agbabiaka-5b5984108" :target "_blank"} "linkedin"]]]))
 
 (defn basePage [title & body]
   (header title)
   (h/html5
     [:body
      [:div {:id "header"}
-      [:h1 {:class "container"} "femi's website"]]
+      [:h1 {:class "container"} title]]
      [:div {:id "content" :class "container"} (navigationBar) body]]))
+
+(defn postNotFound []
+  (basePage "hopelessly lost"
+            [:p "you seem to have lost your way. here's a path " 
+             [:a {:style "color: blue;" :href "/"} "home"] "."]))
+
+(defn single [slug]
+  (basePage (str slug ".md")
+            (->>
+              (m/file->hiccup (str "/srv/personalwebsite/docs/" slug ".md"))
+              (m/component))))
+
+
 
 (defn index []
   (basePage "femi"
             [:div {:id "it-me"}
              [:p "hello, my name is femi agbabiaka"]
              [:p "i'm a sre who loves infrastructure, all things devops, and long walks on the beach"]
-             [:p "currently, i work at " [:a {:href "http://activecampaign.com" :style "color:blue;"} "ActiveCampaign"] "."]
-             [:p "i'm also a member of the " [:a {:href "http://dsausa.org" :style "color: blue;"} "Democratic Socialists of America"] "."]
-             [:p "if you're looking to contact me, you can email me at "
+             [:p "currently, i work at " [:a {:href "https://careers.linkedin.com" :style "color:blue;"} "LinkedIn"] "."]
+                        [:p "if you're looking to contact me, you can email me at "
               [:a {:href "mailto:femi@femiagbabiaka.xyz"} "femi@femiagbabiaka.xyz"] "."]
-             [:p {:style "font-size:80%"} "ps, this website is built using clojure"]]))
+             [:p {:style "font-size:79%"} "ps, this website is built using clojure"]]))
