@@ -1,14 +1,10 @@
 (ns personalwebsite.controllers.posts
-    (:require [compojure.core :refer [defroutes GET]]
+    (:require [compojure.core :as compojure]
+              [compojure.route :as compojure-route]
               [personalwebsite.views.layout :as layout]
               [ring.util.response :as ring]
-              [clojure.string :as str]
-              [clojure.java.io :as io]))
-
-
-
-(defn index []
-    (layout/index))
+              [clojure.java.io :as io]
+              [clojure.string :as str]))
 
 (defn is-valid-slug? [slug]
   (cond
@@ -16,12 +12,13 @@
     (.exists (io/as-file (str "/srv/personalwebsite/docs/" slug ".md"))) true
     :else false))
 
-;; @TODO: Add error handling for model not found for slug.
 (defn singlePost [slug]
   (if (is-valid-slug? slug)
     (layout/single slug)
     (layout/postNotFound)))
 
-(defroutes routes
-    (GET "/" [] (index))
-    (GET "/blog/:slug" [slug] (singlePost slug)))
+(compojure/defroutes routes
+    (compojure/GET "/" [] (layout/index))
+    (compojure/GET "/blog" [] (layout/blogPage))
+    (compojure/GET "/blog/:slug" [slug] (singlePost slug))
+    (compojure-route/not-found (layout/postNotFound)))
