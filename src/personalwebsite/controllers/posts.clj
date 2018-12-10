@@ -9,7 +9,7 @@
 (defn is-valid-slug? [slug]
   (cond
     (str/blank? slug) false
-    (.exists (io/as-file (str "/srv/personalwebsite/docs/" slug ".md"))) true
+    (.exists (io/as-file (str "/srv/personalwebsite/docs/" slug))) true
     :else false))
 
 (defn singlePost [slug]

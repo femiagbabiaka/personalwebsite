@@ -53,9 +53,9 @@
 
 
 (defn single [slug]
-  (basePage (str slug ".md")
+  (basePage (str slug)
             (->>
-              (m/file->hiccup (str "/srv/personalwebsite/docs/" slug ".md"))
+              (m/file->hiccup (str "/srv/personalwebsite/docs/" slug))
               (m/component))))
 
 (defn index []
