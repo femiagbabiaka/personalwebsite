@@ -62,9 +62,8 @@
   (basePage "howdy doody"
             [:div {:id "it-me"}
              [:p "hello, my name is femi agbabiaka."]
-             [:p "i'm a sre who loves learning about large scale infrastructure, all things dist sys and PLT, and taking long walks on the beach"]
-             [:p "i " [:a {:href "/blog" :style "color:blue;"} "blog"] " here. i'm mostly interested in tech, philosophy (critical theory/marxist theory), and cultural critique."]
-             [:p "currently, i work at " [:a {:href "https://careers.linkedin.com" :style "color:blue;"} "LinkedIn"] ". I'm always willing to talk about my workplace."]
+             [:p "i " [:a {:href "/blog" :style "color:blue;"} "blog"] " here. i'm mostly interested in music, philosophy, and cultural critique."]
+             [:p "currently, i work at " [:a {:href "https://careers.linkedin.com" :style "color:blue;"} "LinkedIn"] " as a Site Reliability Engineer. I'm always willing to talk about my workplace."]
                         [:p "if you're looking to contact me, you can email me at "
               [:a {:href "mailto:femi@femiagbabiaka.xyz"} "femi@femiagbabiaka.xyz"] "."]
              [:p {:style "font-size:28%"} "ps, this website is built using clojure, also, socialism will win"]]))
