@@ -12,4 +12,4 @@ jobs:
     - name: Install dependencies
       run: lein deps
     - name: Test a build
-      run: lein build
+      run: lein uberjar
