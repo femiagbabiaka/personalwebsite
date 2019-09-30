@@ -36,6 +36,14 @@
             [:p {:style "font-size:150%"} "you seem to have lost your way. here's a path " 
              [:a {:style "color: blue;" :href "/"} "home"] "."]))
 
+(defn list-directories [directory] 
+  (->> directory
+       io/file
+       file-seq
+       (filter #(.isDirectory %))
+       (map #(.getName %))
+       (filter #(not (re-matches #"docs" %)))))
+
 (defn list-files [directory]
   (->> directory
        io/file
@@ -45,17 +53,24 @@
        (filter #(re-matches #".*\.md" %))))
 
 (defn blogPage []
-  (basePage "index"
+  (basePage "categories"
             [:ul 
-             (for [post (list-files "/srv/personalwebsite/docs")]
+             (for [post (list-directories "/srv/personalwebsite/docs/")]
                [:li 
                 [:a { :href (str "/blog/" post) :style "color: blue;"} post]])]))
 
+(defn folderPage [slug]
+  (basePage (str slug)
+            [:ul 
+             (for [post (list-files (str "/srv/personalwebsite/docs/" slug))]
+               [:li 
+                [:a { :href (str "/blog/" slug "/" post) :style "color: blue;"} post]])]))
 
-(defn single [slug]
+
+(defn single [folder slug]
   (basePage (str slug)
             (->>
-              (m/file->hiccup (str "/srv/personalwebsite/docs/" slug))
+              (m/file->hiccup (str "/srv/personalwebsite/docs/" folder "/" slug))
               (m/component))))
 
 (defn index []
