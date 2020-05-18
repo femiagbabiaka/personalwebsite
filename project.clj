@@ -1,4 +1,4 @@
-(defproject personalwebsite "0.4.0-SNAPSHOT"
+(defproject personalwebsite "0.6.0-SNAPSHOT"
   :description "The personal website for Femi Agbabiaka."
   :url "https://github.com/femiagbabiaka/personalwebsite"
   :license {:name "Eclipse Public License"
